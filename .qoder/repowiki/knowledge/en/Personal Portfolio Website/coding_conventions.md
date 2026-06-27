@@ -1,0 +1,3 @@
+- Components are implemented as default-exported arrow functions (e.g., `const Hero = () => { ... }`).
+- UI sections use semantic HTML `<section>` tags with consistent BEM-like class names such as `.section`, `.section-title`, and `.section-label` for styling and animation targeting.
+- Icons are imported and rendered directly from the `lucide-react` library to maintain a consistent visual style.

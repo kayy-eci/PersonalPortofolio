@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #030014;
+  --bg-secondary: #0a0a1a;
+  --bg-card: #111127;
+  --bg-card-hover: #1a1a3e;
+  --text-primary: #e4e4e7;
+  --text-secondary: #a1a1aa;
+  --text-heading: #fafafa;
+  --accent: #a855f7;
+  --accent-light: #c084fc;
+  --accent-dark: #7c3aed;
+  --gradient-1: linear-gradient(135deg, #a855f7 0%, #6366f1 50%, #3b82f6 100%);
+  --gradient-2: linear-gradient(135deg, #ec4899 0%, #a855f7 100%);
+  --gradient-3: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+  --border-color: rgba(161, 161, 170, 0.12);
+  --glow-purple: 0 0 40px rgba(168, 85, 247, 0.15);
+
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  text-align: left;
+  border: none;
+  min-height: 100svh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-heading);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+a {
+  color: var(--accent-light);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+::selection {
+  background: rgba(168, 85, 247, 0.3);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-dark);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}

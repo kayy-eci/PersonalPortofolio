@@ -1,0 +1,13 @@
+schema_version: 1
+module_path: build_system
+title: Vite-based Build System for React Portfolio
+scope: []
+source_files:
+    - package.json
+    - vite.config.ts
+    - tsconfig.json
+    - tsconfig.app.json
+    - tsconfig.node.json
+    - eslint.config.js
+depends_on: []
+related_to: []

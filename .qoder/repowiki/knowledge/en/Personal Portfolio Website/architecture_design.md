@@ -1,0 +1,4 @@
+- Entry point: `src/main.tsx` renders the root `App` component within `StrictMode`.
+- Layout: `src/App.tsx` acts as the page composer, sequencing semantic sections (Hero, About, Skills, etc.) and managing global scroll-triggered fade-in animations via `IntersectionObserver` and `gsap`.
+- Components: Modular, stateless functional components in `src/components/` handle specific UI sections. Complex interactive elements like `CardSwap` encapsulate their own animation logic using `gsap` timelines.
+- Styling: Global design tokens (colors, fonts) are defined in `src/index.css` using CSS variables, while layout and utility classes are handled by Tailwind CSS v4 via the `@tailwindcss/vite` plugin.

@@ -1,0 +1,105 @@
+# 知识卡导出索引文件
+schema_version: 1
+locale: en-US
+branch: Q0DeR-MaG1C-BrAnCh-Fo2-NoN-GiT-Or-No-C0MmIt
+nodes_managed: true
+exported_at: "2026-06-27T03:59:15Z"
+modules:
+    "":
+        dir_name: Personal Portfolio Website
+        title: Personal Portfolio Website
+        scope:
+            - .gitignore
+            - README.md
+            - eslint.config.js
+            - index.html
+            - package-lock.json
+            - package.json
+            - tsconfig.app.json
+            - tsconfig.json
+            - tsconfig.node.json
+            - vite.config.ts
+            - src/
+            - public\certificates\dicoding-js.jpg
+            - public\certificates\dicoding-logic.png
+            - public\certificates\dicoding-web.jpg
+            - public\certificates\freecodecamp.png
+            - public\certificates\git-github.png
+            - public\certificates\python.jpg
+            - public\favicon.svg
+            - public\icons.svg
+            - public\project\NaturaDrops.png
+            - src\App.css
+            - src\App.tsx
+            - src\assets\hero.png
+            - src\assets\react.svg
+            - src\assets\vite.svg
+            - src\components\About.tsx
+            - src\components\Achievements.tsx
+            - src\components\CardSwap.tsx
+            - src\components\Contact.tsx
+            - src\components\Footer.tsx
+            - src\components\Hero.tsx
+            - src\components\Navbar.tsx
+            - src\components\Skills.tsx
+            - src\index.css
+            - src\main.tsx
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    build_system:
+        dir_name: Vite-based Build System for React Portfolio
+        title: Vite-based Build System for React Portfolio
+        scope: []
+        source_files:
+            - package.json
+            - vite.config.ts
+            - tsconfig.json
+            - tsconfig.app.json
+            - tsconfig.node.json
+            - eslint.config.js
+        children: []
+        depends_on: []
+        related_to: []
+    configuration_system:
+        dir_name: Vite-based Build and Tooling Configuration
+        title: Vite-based Build and Tooling Configuration
+        scope: []
+        source_files:
+            - vite.config.ts
+            - package.json
+            - tsconfig.json
+            - tsconfig.app.json
+            - tsconfig.node.json
+            - eslint.config.js
+        children: []
+        depends_on: []
+        related_to: []
+    dependency_management:
+        dir_name: NPM and Vite Dependency Management
+        title: NPM and Vite Dependency Management
+        scope: []
+        source_files:
+            - package.json
+            - package-lock.json
+            - vite.config.ts
+            - tsconfig.json
+            - eslint.config.js
+        children: []
+        depends_on: []
+        related_to: []
+    frontend_style:
+        dir_name: Dark Themed Portfolio with Tailwind CSS v4 and GSAP Animations
+        title: Dark Themed Portfolio with Tailwind CSS v4 and GSAP Animations
+        scope: []
+        source_files:
+            - src/index.css
+            - src/App.css
+            - src/App.tsx
+            - src/components/CardSwap.tsx
+            - src/components/Hero.tsx
+            - package.json
+        children: []
+        depends_on: []
+        related_to: []

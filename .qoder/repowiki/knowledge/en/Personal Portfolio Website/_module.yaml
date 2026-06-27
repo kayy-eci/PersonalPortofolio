@@ -1,0 +1,42 @@
+schema_version: 1
+module_path: ""
+title: Personal Portfolio Website
+scope:
+    - .gitignore
+    - README.md
+    - eslint.config.js
+    - index.html
+    - package-lock.json
+    - package.json
+    - tsconfig.app.json
+    - tsconfig.json
+    - tsconfig.node.json
+    - vite.config.ts
+    - src/
+    - public\certificates\dicoding-js.jpg
+    - public\certificates\dicoding-logic.png
+    - public\certificates\dicoding-web.jpg
+    - public\certificates\freecodecamp.png
+    - public\certificates\git-github.png
+    - public\certificates\python.jpg
+    - public\favicon.svg
+    - public\icons.svg
+    - public\project\NaturaDrops.png
+    - src\App.css
+    - src\App.tsx
+    - src\assets\hero.png
+    - src\assets\react.svg
+    - src\assets\vite.svg
+    - src\components\About.tsx
+    - src\components\Achievements.tsx
+    - src\components\CardSwap.tsx
+    - src\components\Contact.tsx
+    - src\components\Footer.tsx
+    - src\components\Hero.tsx
+    - src\components\Navbar.tsx
+    - src\components\Skills.tsx
+    - src\index.css
+    - src\main.tsx
+source_files: []
+depends_on: []
+related_to: []

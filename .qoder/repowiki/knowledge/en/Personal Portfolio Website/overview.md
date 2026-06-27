@@ -1,0 +1,1 @@
+A responsive, animated personal portfolio showcasing professional skills, projects, and contact information using React and GSAP.

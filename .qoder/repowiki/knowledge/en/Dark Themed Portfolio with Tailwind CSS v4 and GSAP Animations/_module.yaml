@@ -1,0 +1,13 @@
+schema_version: 1
+module_path: frontend_style
+title: Dark Themed Portfolio with Tailwind CSS v4 and GSAP Animations
+scope: []
+source_files:
+    - src/index.css
+    - src/App.css
+    - src/App.tsx
+    - src/components/CardSwap.tsx
+    - src/components/Hero.tsx
+    - package.json
+depends_on: []
+related_to: []
