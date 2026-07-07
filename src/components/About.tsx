@@ -79,11 +79,11 @@ const About = () => {
                     width: 40,
                     height: 40,
                     borderRadius: '0.6rem',
-                    background: 'rgba(168,85,247,0.12)',
+                    background: 'rgba(124,58,237,0.08)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: 'var(--accent-light)',
+                    color: 'var(--accent)',
                     flexShrink: 0,
                   }}
                 >
