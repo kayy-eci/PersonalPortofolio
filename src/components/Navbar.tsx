@@ -1,63 +1,54 @@
-import { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon } from 'lucide-react';
-import { useTheme } from '../hooks/useTheme';
+import StaggeredMenu from "./StaggeredMenu";
+import TargetCursor from "./TargetCursor";
 
-const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Achievements', href: '#projects' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Contact', href: '#contact' },
+const menuItems = [
+  { label: "Home", ariaLabel: "Go to home page", link: "/" },
+  { label: "About", ariaLabel: "Learn about us", link: "/about" },
+  {
+    label: "Perks",
+    ariaLabel: "View achievements",
+    link: "/achievements",
+  },
+  { label: "Contact", ariaLabel: "Get in touch", link: "/contact" },
+];
+
+const socialItems = [
+  { label: "GitHub", link: "https://github.com/kayy-eci" },
+  {
+    label: "LinkedIn",
+    link: "https://www.linkedin.com/in/abdurahman-kayysan-a79b08346/",
+  },
+  { label: "Instagram", link: "https://www.instagram.com/kaii.dev/" },
 ];
 
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
   return (
-    <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
-      <a href="#" className="nav-logo">Kayysan.</a>
-
-      <ul className="nav-links">
-        {navLinks.map((l) => (
-          <li key={l.href}>
-            <a href={l.href}>{l.label}</a>
-          </li>
-        ))}
-      </ul>
-
-      <div className="nav-right">
-        <button
-          className="theme-toggle"
-          onClick={toggleTheme}
-          aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
-        >
-          {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
-        </button>
-        <a href="#contact" className="nav-cta">Let's Talk</a>
-      </div>
-
-      {/* Mobile toggle */}
-      <button
-        onClick={() => setMobileOpen(!mobileOpen)}
-        aria-label="Toggle menu"
-        style={{
-          display: 'none',
-          background: 'transparent',
-          border: 'none',
-          color: 'var(--text-primary)',
-          cursor: 'pointer',
-        }}
-      >
-        {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
-    </nav>
+    <>
+      <TargetCursor
+        spinDuration={2}
+        hideDefaultCursor
+        parallaxOn
+        hoverDuration={0.2}
+        cursorColor="#94a3b8"
+        cursorColorOnTarget="#bcb2c5"
+      />
+      <StaggeredMenu
+        position="left"
+        items={menuItems}
+        socialItems={socialItems}
+        displaySocials
+        displayItemNumbering={true}
+        menuButtonColor="#000"
+        openMenuButtonColor="#000"
+        changeMenuColorOnOpen={true}
+        colors={["#B497CF", "#5227FF"]}
+        logoUrl="Kayysan"
+        accentColor="#5227FF"
+        isFixed={true}
+        onMenuOpen={() => console.log("Menu opened")}
+        onMenuClose={() => console.log("Menu closed")}
+      />
+    </>
   );
 };
 

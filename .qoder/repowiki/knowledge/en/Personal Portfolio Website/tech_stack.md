@@ -1,1 +1,0 @@
-React 19 with TypeScript, Vite 8 for build tooling, Tailwind CSS v4 for styling, and GSAP 3 for advanced timeline-based animations.

@@ -1,0 +1,31 @@
+import { ArrowDown, Sparkles } from 'lucide-react';
+import CardSwap, { Card } from './CardSwap';
+
+{/* Right side — CardSwap */}
+      <div className="hero-cardswap">
+        <CardSwap
+          cardDistance={60}
+          verticalDistance={70}
+          delay={5000}
+          pauseOnHover={true}
+        >
+          <Card customClass="card-gradient-1">
+              <img src='/project/NaturaDrops.png'></img>
+          </Card>
+          <Card customClass="card-gradient-2">
+            <div className="card-inner">
+              <span className="card-label">Creative</span>
+              <span className="card-big">{'</>'}</span>
+            </div>
+          </Card>
+          <Card customClass="card-gradient-3">
+            <div className="card-inner">
+              <span className="card-label">Reliable</span>
+            </div>
+          </Card>
+        </CardSwap>
+      </div>
+
+      <div className="hero-scroll">
+        <ArrowDown size={20} color="var(--text-secondary)" />
+      </div>

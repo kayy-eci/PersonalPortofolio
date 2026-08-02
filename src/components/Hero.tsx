@@ -1,5 +1,6 @@
-import { ArrowDown, Sparkles } from 'lucide-react';
-import CardSwap, { Card } from './CardSwap';
+import { ArrowDown, Sparkles, Download } from "lucide-react";
+import RotatingText from "./RotatingText";
+import CardSwap, { Card } from "./CardSwap";
 
 const Hero = () => {
   return (
@@ -17,28 +18,43 @@ const Hero = () => {
         </div>
 
         <h1 className="hero-title">
-          Hi, I'm <span className="gradient-text">Kayysan</span>
+          Hi, I'm <span className="text-[#6551fc]">Kayysan</span>
           <br />
-          Creative Developer
+          <RotatingText
+            texts={["FrontEnd", "BackEnd", "Fullstack", "Mobile"]}
+            className="hero-title"
+            mainClassName="px-2 sm:px-2 md:px-3 text-black overflow-hidden py-0.5 sm:py-1 md:py-2 rounded-lg"
+            staggerFrom="last"
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "-120%" }}
+            staggerDuration={0.025}
+            splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+            transition={{ type: "spring", damping: 30, stiffness: 400 }}
+            rotationInterval={2500}
+            splitBy="characters"
+            auto
+            loop
+          />
+          Developer
         </h1>
 
         <p className="hero-subtitle">
-          I build beautiful, performant web experiences with modern technologies.
-          Turning ideas into elegant digital products.
+          I build beautiful, performant web experiences with modern
+          technologies. Turning ideas into elegant digital products.
         </p>
 
         <div className="hero-buttons">
-          <a href="#projects" className="btn-primary">
+          <a href="#contact" className="btn-primary">
             <Sparkles size={18} />
-            View My Work
-          </a>
-          <a href="#contact" className="btn-secondary">
             Get In Touch
+          </a>
+          <a className="btn-secondary">
+            <Download size={18}/>
+            Downlaod CV
           </a>
         </div>
       </div>
-
-      {/* Right side — CardSwap */}
       <div className="hero-cardswap">
         <CardSwap
           cardDistance={60}
@@ -47,27 +63,17 @@ const Hero = () => {
           pauseOnHover={true}
         >
           <Card customClass="card-gradient-1">
-            <div className="card-inner">
-              <span className="card-label">Smooth</span>
-              <span className="card-big">K</span>
-            </div>
+            <img src="/project/NaturaDrops.png"></img>
           </Card>
           <Card customClass="card-gradient-2">
             <div className="card-inner">
               <span className="card-label">Creative</span>
-              <span className="card-big">{'</>'}</span>
+              <span className="card-big">{"</>"}</span>
             </div>
           </Card>
           <Card customClass="card-gradient-3">
             <div className="card-inner">
               <span className="card-label">Reliable</span>
-              <span className="card-big">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-                  <line x1="8" y1="21" x2="16" y2="21" />
-                  <line x1="12" y1="17" x2="12" y2="21" />
-                </svg>
-              </span>
             </div>
           </Card>
         </CardSwap>
