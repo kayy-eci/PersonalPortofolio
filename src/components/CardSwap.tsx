@@ -19,7 +19,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
     <div
       ref={ref}
       {...rest}
-      className={`absolute top-1/2 left-1/2 rounded-xl border border-white/20 bg-black shadow-lg transform-3d will-change-transform backface-hidden ${customClass ?? ""} ${rest.className ?? ""}`.trim()}
+      className={`absolute top-1/2 left-1/2 rounded-xl border border-white/20 bg-black shadow-lg overflow-hidden transform-3d will-change-transform backface-hidden ${customClass ?? ""} ${rest.className ?? ""}`.trim()}
     />
   ),
 );
@@ -29,7 +29,9 @@ Card.displayName = "Card";
 const makeSlot = (i: number, distX: number, distY: number, total: number) => ({
   x: i * distX,
   y: -i * distY,
-  z: -i * distX * 1.5,
+  z: -i * distX * 3,
+  rotateY: -i * 5,
+  scale: 1 - i * 0.05,
   zIndex: total - i,
 });
 
@@ -42,6 +44,8 @@ const placeNow = (
     x: slot.x,
     y: slot.y,
     z: slot.z,
+    rotateY: slot.rotateY,
+    scale: slot.scale,
     xPercent: -50,
     yPercent: -50,
     skewY: skew,
@@ -72,7 +76,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
   delay = 2000,
   pauseOnHover = false,
   onCardClick,
-  skewAmount = 6,
+  skewAmount = 10,
   easing = "elastic",
   children,
 }) => {
@@ -142,6 +146,8 @@ const CardSwap: React.FC<CardSwapProps> = ({
             x: slot.x,
             y: slot.y,
             z: slot.z,
+            rotateY: slot.rotateY,
+            scale: slot.scale,
             duration: config.durMove,
             ease: config.ease,
           },
@@ -169,6 +175,8 @@ const CardSwap: React.FC<CardSwapProps> = ({
           x: backSlot.x,
           y: backSlot.y,
           z: backSlot.z,
+          rotateY: backSlot.rotateY,
+          scale: backSlot.scale,
           duration: config.durReturn,
           ease: config.ease,
         },
@@ -233,7 +241,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
   return (
     <div
       ref={container}
-      className="absolute bottom-0 right-0 transform translate-x-[5%] translate-y-[20%] origin-bottom-right perspective-[900px] overflow-visible max-[768px]:translate-x-[25%] max-[768px]:translate-y-[25%] max-[768px]:scale-[0.75] max-[480px]:translate-x-[25%] max-[480px]:translate-y-[25%] max-[480px]:scale-[0.55]"
+      className="absolute bottom-0 right-0 transform translate-x-[5%] translate-y-[20%] origin-bottom-right perspective-[700px] overflow-visible max-[768px]:translate-x-[25%] max-[768px]:translate-y-[25%] max-[768px]:scale-[0.75] max-[480px]:translate-x-[25%] max-[480px]:translate-y-[25%] max-[480px]:scale-[0.55]"
       style={{ width, height }}
     >
       {rendered}

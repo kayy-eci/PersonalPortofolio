@@ -155,6 +155,26 @@
 .card-gradient-3 .card-inner {
   background: linear-gradient(135deg, #1a0a2e 0%, #3b1a6e 100%);
 }
+.card-gradient-4 .card-inner {
+  background: linear-gradient(135deg, #0a1a0a 0%, #1a3a1a 100%);
+}
+.card-gradient-5 .card-inner {
+  background: linear-gradient(135deg, #2a0a0a 0%, #4a1a1a 100%);
+}
+.card-gradient-1,
+.card-gradient-4,
+.card-gradient-5 {
+  background: #0a0a0a;
+}
+.card-gradient-1 img,
+.card-gradient-4 img,
+.card-gradient-5 img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  image-rendering: auto;
+}
 .hero-blob {
   position: absolute;
   border-radius: 50%;

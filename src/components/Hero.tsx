@@ -57,24 +57,21 @@ const Hero = () => {
       </div>
       <div className="hero-cardswap">
         <CardSwap
-          cardDistance={60}
-          verticalDistance={70}
+          width={500}
+          height={260}
+          cardDistance={80}
+          verticalDistance={90}
           delay={5000}
           pauseOnHover={true}
         >
           <Card customClass="card-gradient-1">
-            <img src="/project/NaturaDrops.png"></img>
+            <img src="/project/NaturaDrops.png" />
           </Card>
-          <Card customClass="card-gradient-2">
-            <div className="card-inner">
-              <span className="card-label">Creative</span>
-              <span className="card-big">{"</>"}</span>
-            </div>
+          <Card customClass="card-gradient-4">
+            <img src="/project/ChessGame.png" />
           </Card>
-          <Card customClass="card-gradient-3">
-            <div className="card-inner">
-              <span className="card-label">Reliable</span>
-            </div>
+          <Card customClass="card-gradient-5">
+            <img src="/project/Rebites.png" />
           </Card>
         </CardSwap>
       </div>
