@@ -1,6 +1,8 @@
 import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
+import { Sun, Moon } from "lucide-react";
+import { useTheme } from "../hooks/useTheme";
 
 export interface StaggeredMenuItem {
   label: string;
@@ -51,6 +53,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 }: StaggeredMenuProps) => {
   const [open, setOpen] = useState(false);
   const openRef = useRef(false);
+  const { theme, toggleTheme } = useTheme();
 
   const panelRef = useRef<HTMLDivElement | null>(null);
   const preLayersRef = useRef<HTMLDivElement | null>(null);
@@ -631,6 +634,14 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                 </ul>
               </div>
             )}
+            <button
+              onClick={toggleTheme}
+              className="sm-theme-toggle mt-auto cursor-target"
+              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              type="button"
+            >
+              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
           </div>
         </aside>
       </div>
@@ -678,6 +689,8 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 .sm-scope .sm-panel-list[data-numbering] .sm-panel-item::after { counter-increment: smItem; content: counter(smItem, decimal-leading-zero); position: absolute; top: 0.1em; right: 3.2em; font-size: 18px; font-weight: 400; color: var(--sm-accent, #ff0000); letter-spacing: 0; pointer-events: none; user-select: none; opacity: var(--sm-num-opacity, 0); }
 @media (max-width: 1024px) { .sm-scope .staggered-menu-panel { width: 100%; left: 0; right: 0; } .sm-scope .staggered-menu-wrapper[data-open] .sm-logo-img { filter: invert(100%); } }
 @media (max-width: 640px) { .sm-scope .staggered-menu-panel { width: 100%; left: 0; right: 0; } .sm-scope .staggered-menu-wrapper[data-open] .sm-logo-img { filter: invert(100%); } }
+.sm-scope .sm-theme-toggle { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.08); color: #000; cursor: pointer; transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.3s; flex-shrink: 0; margin-top: auto; }
+.sm-scope .sm-theme-toggle:hover { background: rgba(0,0,0,0.12); border-color: var(--sm-accent, #5227FF); color: var(--sm-accent, #5227FF); transform: scale(1.1); }
       `}</style>
     </div>
   );
