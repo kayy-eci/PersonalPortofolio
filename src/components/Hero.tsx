@@ -57,8 +57,8 @@ const Hero = () => {
       </div>
       <div className="hero-cardswap">
         <CardSwap
-          width={500}
-          height={260}
+          width={650}
+          height={340}
           cardDistance={80}
           verticalDistance={90}
           delay={5000}
