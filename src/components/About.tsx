@@ -131,7 +131,7 @@ const About = () => {
             number: (
               <CountUp
                 from={0}
-                to={5}
+                to={3}
                 separator=","
                 direction="up"
                 duration={5}
@@ -145,7 +145,7 @@ const About = () => {
             number: (
               <CountUp
                 from={0}
-                to={14}
+                to={22}
                 separator=","
                 direction="up"
                 duration={5}
