@@ -1,5 +1,3 @@
-"use client";
-
 import { animatePageIn, animatePageOut } from "../utils/animations";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";

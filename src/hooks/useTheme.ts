@@ -19,11 +19,6 @@ export function useTheme() {
     localStorage.setItem(STORAGE_KEY, theme);
   }, [theme]);
 
-  // Set initial attribute on mount
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', getInitialTheme());
-  }, []);
-
   const toggleTheme = useCallback(() => {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   }, []);

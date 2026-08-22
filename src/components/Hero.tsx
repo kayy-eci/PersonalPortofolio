@@ -5,12 +5,10 @@ import CardSwap, { Card } from "./CardSwap";
 const Hero = () => {
   return (
     <section className="hero" id="home">
-      {/* Animated blobs */}
       <div className="hero-blob hero-blob-1" />
       <div className="hero-blob hero-blob-2" />
       <div className="hero-blob hero-blob-3" />
 
-      {/* Left content */}
       <div className="hero-content">
         <div className="hero-badge">
           <span className="dot" />
@@ -51,7 +49,7 @@ const Hero = () => {
           </a>
           <a className="btn-secondary">
             <Download size={18}/>
-            Downlaod CV
+            Download CV
           </a>
         </div>
       </div>

@@ -16,7 +16,6 @@ const About = () => {
       />
       <div className="section-label">About Me</div>
       <div className="about-grid">
-        {/* Image */}
         <TiltedCard
           imageSrc="./public/kayysan.jpeg"
           altText="Kayysan - Software Engineering"
@@ -29,11 +28,8 @@ const About = () => {
           scaleOnHover={1.05}
           showMobileWarning={false}
           showTooltip
-          displayOverlayContent={false}
-          overlayContent={<p className="tilted-card-demo-text">Kayysan</p>}
         />
 
-        {/* Content */}
         <div>
           <h2 className="section-title">Passionate about making website</h2>
           <div className="about-text">
@@ -45,7 +41,6 @@ const About = () => {
             </p>
           </div>
 
-          {/* Feature cards */}
           <div
             style={{
               display: "flex",
@@ -124,19 +119,15 @@ const About = () => {
         </div>
       </div>
 
-      {/* Stats */}
       <div className="about-stats">
         {[
           {
             number: (
               <CountUp
-                from={0}
                 to={3}
                 separator=","
-                direction="up"
                 duration={5}
                 className="count-up-text"
-                delay={0}
               />
             ),
             label: "Years Experience",
@@ -144,13 +135,10 @@ const About = () => {
           {
             number: (
               <CountUp
-                from={0}
                 to={22}
                 separator=","
-                direction="up"
                 duration={5}
                 className="count-up-text"
-                delay={0}
               />
             ),
             label: "Projects Built",
@@ -158,13 +146,10 @@ const About = () => {
           {
             number: (
               <CountUp
-                from={0}
                 to={20}
                 separator=","
-                direction="up"
                 duration={5}
                 className="count-up-text"
-                delay={0}
               />
             ),
             label: "Happy Clients",

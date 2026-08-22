@@ -25,7 +25,6 @@ const Contact = () => {
       </p>
 
       <div className="contact-wrapper">
-        {/* Info side */}
         <div className="contact-info">
           <h3>Contact Info</h3>
           <p>
@@ -58,7 +57,6 @@ const Contact = () => {
             ))}
           </div>
 
-          {/* Social quick links */}
           <div style={{ display: "flex", gap: "0.75rem", marginTop: "2rem" }}>
             {socialLinks.map((Social) => (
               <a
@@ -66,29 +64,7 @@ const Contact = () => {
                 href={Social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  padding: "0.5rem 1.25rem",
-                  borderRadius: "9999px",
-                  background: "var(--bg-card)",
-                  border: "1px solid var(--border-color)",
-                  color: "var(--text-secondary)",
-                  fontSize: "0.85rem",
-                  fontWeight: 500,
-                  textDecoration: "none",
-                  transition: "border-color 0.3s, color 0.3s",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                    "var(--accent)";
-                  (e.currentTarget as HTMLAnchorElement).style.color =
-                    "var(--text-heading)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                    "var(--border-color)";
-                  (e.currentTarget as HTMLAnchorElement).style.color =
-                    "var(--text-secondary)";
-                }}
+                className="social-pill"
               >
                 {Social.name}
               </a>
@@ -96,7 +72,6 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Form side */}
         <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
           <div
             style={{

@@ -25,7 +25,6 @@ import {
 } from "react-icons/si";
 
 const skills = [
-  // Baris 1
   { name: "Go", icon: SiGo },
   { name: "JavaScript", icon: SiJavascript },
   { name: "HTML5", icon: SiHtml5 },
@@ -33,7 +32,6 @@ const skills = [
   { name: "TypeScript", icon: SiTypescript },
   { name: "Netlify", icon: SiNetlify },
 
-  // Baris 2
   { name: "Vercel", icon: SiVercel },
   { name: "Bootstrap", icon: SiBootstrap },
   { name: "Express.js", icon: SiExpress },
@@ -42,7 +40,6 @@ const skills = [
   { name: "Nodemon", icon: SiNodemon },
   { name: "React", icon: SiReact },
 
-  // Baris 3
   { name: "React Query", icon: SiReactquery },
   { name: "React Router", icon: SiReactrouter },
   { name: "React Hook Form", icon: SiReacthookform },
@@ -50,7 +47,6 @@ const skills = [
   { name: "Tailwind CSS", icon: SiTailwindcss },
   { name: "PostgreSQL", icon: SiPostgresql },
 
-  // Baris 4
   { name: "MongoDB", icon: SiMongodb },
   { name: "MySQL", icon: SiMysql },
   { name: "Figma", icon: SiFigma },
@@ -58,7 +54,7 @@ const skills = [
 ];
 
 const Skills = () => {
-  const doubled = [...skills, ...skills]; // duplicate for seamless loop
+  const doubled = [...skills, ...skills];
 
   return (
     <section className="skills-section" id="skills">

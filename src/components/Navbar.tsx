@@ -42,11 +42,8 @@ const Navbar = () => {
         openMenuButtonColor="#000"
         changeMenuColorOnOpen={true}
         colors={["#B497CF", "#5227FF"]}
-        logoUrl="Kayysan"
         accentColor="#5227FF"
-        isFixed={true}
-        onMenuOpen={() => console.log("Menu opened")}
-        onMenuClose={() => console.log("Menu closed")}
+        isFixed
       />
     </>
   );

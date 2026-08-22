@@ -1,9 +1,7 @@
 @import "tailwindcss";
 
-/* ─── LIGHT MODE (default) ─── */
 :root {
   --bg-primary: #f0f0f0;
-  --bg-secondary: #e8e8e8;
   --bg-card: #ffffff;
   --bg-card-hover: #fafafa;
   --text-primary: #3f3f46;
@@ -13,10 +11,7 @@
   --accent-light: #8b5cf6;
   --accent-dark: #6d28d9;
   --gradient-1: linear-gradient(135deg, #a855f7 0%, #6366f1 50%, #3b82f6 100%);
-  --gradient-2: linear-gradient(135deg, #ec4899 0%, #a855f7 100%);
-  --gradient-3: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
   --border-color: rgba(0, 0, 0, 0.08);
-  --glow-purple: 0 0 40px rgba(124, 58, 237, 0.1);
   --nav-bg: rgba(255, 255, 255, 0.7);
   --dot-color: rgba(0, 0, 0, 0.12);
   --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06);

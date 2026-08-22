@@ -223,7 +223,6 @@ const Achievements = ({ showAll = false }: AchievementsProps) => {
         </div>
       )}
 
-      {/* Lightbox */}
       {selectedImage && (
         <div className="lightbox" onClick={() => setSelectedImage(null)}>
           <button
