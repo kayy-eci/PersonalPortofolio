@@ -126,9 +126,10 @@ const App = () => {
       });
     });
 
-    window.addEventListener("load", ScrollTrigger.refresh);
+    const refresh = () => ScrollTrigger.refresh();
+    window.addEventListener("load", refresh);
     return () => {
-      window.removeEventListener("load", ScrollTrigger.refresh);
+      window.removeEventListener("load", refresh);
       ctx.revert();
     };
   }, [location.pathname]);

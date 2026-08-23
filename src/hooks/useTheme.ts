@@ -1,26 +1,39 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback, useSyncExternalStore } from 'react';
 
 type Theme = 'light' | 'dark';
 
 const STORAGE_KEY = 'portfolio-theme';
+const ATTR = 'data-theme';
 
-function getInitialTheme(): Theme {
-  if (typeof window === 'undefined') return 'dark';
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (stored === 'dark' || stored === 'light') return stored;
-  return 'dark';
+function applyTheme(next: Theme) {
+  document.documentElement.setAttribute(ATTR, next);
+  try {
+    localStorage.setItem(STORAGE_KEY, next);
+  } catch {
+    // storage unavailable (private mode etc.) - attribute still applies
+  }
+}
+
+function getSnapshot(): Theme {
+  return document.documentElement.getAttribute(ATTR) === 'light'
+    ? 'light'
+    : 'dark';
+}
+
+function subscribe(onChange: () => void) {
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: [ATTR],
+  });
+  return () => observer.disconnect();
 }
 
 export function useTheme() {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme);
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem(STORAGE_KEY, theme);
-  }, [theme]);
+  const theme = useSyncExternalStore(subscribe, getSnapshot, () => 'dark');
 
   const toggleTheme = useCallback(() => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+    applyTheme(getSnapshot() === 'dark' ? 'light' : 'dark');
   }, []);
 
   return { theme, toggleTheme };
