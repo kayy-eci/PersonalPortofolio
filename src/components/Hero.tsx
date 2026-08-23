@@ -1,4 +1,4 @@
-import { ArrowDown, Sparkles, Download } from "lucide-react";
+import { Sparkles, Download } from "lucide-react";
 import RotatingText from "./RotatingText";
 import CardSwap, { Card } from "./CardSwap";
 
@@ -72,10 +72,6 @@ const Hero = () => {
             <img src="/project/Rebites.png" />
           </Card>
         </CardSwap>
-      </div>
-
-      <div className="hero-scroll">
-        <ArrowDown size={20} color="var(--text-secondary)" />
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 import StaggeredMenu from "./StaggeredMenu";
 import TargetCursor from "./TargetCursor";
+import { useTheme } from "../hooks/useTheme";
 
 const menuItems = [
   { label: "Home", ariaLabel: "Go to home page", link: "/" },
@@ -22,6 +23,8 @@ const socialItems = [
 ];
 
 const Navbar = () => {
+  const { theme } = useTheme();
+
   return (
     <>
       <TargetCursor
@@ -38,7 +41,7 @@ const Navbar = () => {
         socialItems={socialItems}
         displaySocials
         displayItemNumbering={true}
-        menuButtonColor="#000"
+        menuButtonColor={theme === "dark" ? "#fff" : "#000"}
         openMenuButtonColor="#000"
         changeMenuColorOnOpen={true}
         colors={["#B497CF", "#5227FF"]}
