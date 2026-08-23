@@ -1,54 +1,43 @@
 @import "tailwindcss";
 
 :root {
-  --bg-primary: #f0f0f0;
-  --bg-card: #ffffff;
-  --bg-card-hover: #fafafa;
-  --text-primary: #3f3f46;
-  --text-secondary: #71717a;
-  --text-heading: #18181b;
-  --accent: #7c3aed;
-  --accent-light: #8b5cf6;
-  --accent-dark: #6d28d9;
-  --gradient-1: linear-gradient(135deg, #a855f7 0%, #6366f1 50%, #3b82f6 100%);
-  --border-color: rgba(0, 0, 0, 0.08);
-  --nav-bg: rgba(255, 255, 255, 0.7);
-  --dot-color: rgba(0, 0, 0, 0.12);
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06);
-  --shadow-card-hover: 0 20px 60px rgba(124, 58, 237, 0.12);
-  --blob-opacity: 0.25;
-
-  font-family:
-    "Inter",
+  --bg: #0a0a0a;
+  --bg-elev: #121212;
+  --bg-hover: #181818;
+  --text-primary: #e6e6e6;
+  --text-secondary: #9a9a9a;
+  --text-heading: #f4f4f4;
+  --muted: #666666;
+  --accent: #e1ff5f;
+  --accent-ink: #0a0a0a;
+  --accent-dim: rgba(225, 255, 95, 0.14);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --line-strong: rgba(255, 255, 255, 0.22);
+  --font-display:
+    "Space Grotesk",
     system-ui,
-    -apple-system,
     sans-serif;
+  --font-body:
+    "DM Sans",
+    system-ui,
+    sans-serif;
+  --font-mono:
+    ui-monospace,
+    "SF Mono",
+    "Cascadia Mono",
+    Menlo,
+    monospace;
+
+  color-scheme: dark;
+  font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
   color: var(--text-primary);
-  background: var(--bg-primary);
+  background: var(--bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
-}
-[data-theme="dark"] {
-  --bg-primary: #030014;
-  --bg-card: #111127;
-  --bg-card-hover: #1a1a3e;
-  --text-primary: #e4e4e7;
-  --text-secondary: #a1a1aa;
-  --text-heading: #fafafa;
-  --accent: #a855f7;
-  --accent-light: #c084fc;
-  --accent-dark: #7c3aed;
-  --border-color: rgba(161, 161, 170, 0.12);
-  --nav-bg: rgba(3, 0, 20, 0.6);
-  --dot-color: rgba(255, 255, 255, 0.06);
-  --shadow-card: none;
-  --shadow-card-hover: 0 0 40px rgba(168, 85, 247, 0.15);
-  --blob-opacity: 0.4;
 }
 
 * {
@@ -59,30 +48,13 @@ body {
   margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
-  overflow-y: auto;
-  background-color: var(--bg-primary);
-  background-image: radial-gradient(
-    circle,
-    var(--dot-color) 1px,
-    transparent 1px
-  );
-  background-size: 20px 20px;
-  transition:
-    background-color 0.4s,
-    color 0.4s;
+  background-color: var(--bg);
 }
 
 #root {
   width: 100%;
-  max-width: 100%;
-  margin: 0;
-  text-align: left;
-  border: none;
   min-height: 100vh;
   overflow-x: hidden;
-  overflow-y: visible;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
 }
 
 h1,
@@ -91,43 +63,36 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: var(--font-display);
   color: var(--text-heading);
-  font-weight: 700;
-  line-height: 1.2;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
 }
 
 a {
-  color: var(--accent);
+  color: inherit;
   text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  color: var(--accent-dark);
 }
 
 ::selection {
-  background: rgba(124, 58, 237, 0.2);
-  color: var(--text-heading);
+  background: var(--accent);
+  color: var(--accent-ink);
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+  background: var(--bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c4b5fd;
-  border-radius: 4px;
-}
-
-[data-theme="dark"] ::-webkit-scrollbar-thumb {
-  background: var(--accent-dark);
+  background: #2a2a2a;
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
+  background: #3a3a3a;
 }

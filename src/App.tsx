@@ -1,15 +1,17 @@
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import Work from "./components/Work";
 import About from "./components/About";
 import Achievements from "./components/Achievements";
 import Skills from "./components/Skills";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Template from "./components/template";
+import TargetCursor from "./components/TargetCursor";
 import "./App.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -18,10 +20,8 @@ const HomePage = () => (
   <>
     <Hero />
     <div className="section-divider" />
-    <About />
+    <Work />
     <Skills />
-    <div className="section-divider" />
-    <Achievements showAll={false} />
     <div className="section-divider" />
     <Contact />
     <Footer />
@@ -56,6 +56,17 @@ const prefersReducedMotion = () =>
 const App = () => {
   const location = useLocation();
 
+  useEffect(() => {
+    if (!location.hash) return;
+    const target = document.querySelector(location.hash);
+    if (target) {
+      window.setTimeout(
+        () => target.scrollIntoView({ behavior: "smooth" }),
+        100,
+      );
+    }
+  }, [location]);
+
   useLayoutEffect(() => {
     if (prefersReducedMotion()) return;
 
@@ -77,53 +88,53 @@ const App = () => {
         });
 
       gsap.utils
-        .toArray<HTMLElement>(".about-stats, .achievements-grid")
+        .toArray<HTMLElement>(".work-list, .about-stats, .achievements-grid")
         .forEach((group) => {
           gsap.fromTo(
             group.children,
-            { autoAlpha: 0, y: 48 },
+            { autoAlpha: 0, y: 56 },
             {
               autoAlpha: 1,
               y: 0,
-              duration: 0.7,
-              stagger: 0.09,
+              duration: 0.85,
+              stagger: 0.12,
               ease: "power3.out",
               scrollTrigger: { trigger: group, start: "top 82%", once: true },
             },
           );
         });
 
-      const heroScrub = {
-        trigger: ".hero",
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-      } as const;
-
-      if (document.querySelector(".hero-content")) {
-        gsap.to(".hero-content", {
-          yPercent: -22,
-          autoAlpha: 0,
-          ease: "none",
-          scrollTrigger: { ...heroScrub, end: "70% top" },
-        });
-      }
-
-      if (document.querySelector(".hero-cardswap")) {
-        gsap.to(".hero-cardswap", {
-          y: -120,
-          ease: "none",
-          scrollTrigger: { ...heroScrub },
-        });
-      }
-
-      gsap.utils.toArray<HTMLElement>(".hero-blob").forEach((blob, i) => {
-        gsap.to(blob, {
-          y: [-140, -260, -200][i % 3],
-          ease: "none",
-          scrollTrigger: { ...heroScrub },
-        });
+      gsap.utils.toArray<HTMLElement>(".work-media img").forEach((img) => {
+        gsap.fromTo(
+          img,
+          { scale: 1.14, yPercent: -4 },
+          {
+            scale: 1,
+            yPercent: 0,
+            ease: "none",
+            scrollTrigger: {
+              trigger: img.closest(".work-item"),
+              start: "top bottom",
+              end: "center center",
+              scrub: true,
+            },
+          },
+        );
       });
+
+      if (document.querySelector(".hero-inner")) {
+        gsap.to(".hero-inner", {
+          yPercent: -14,
+          autoAlpha: 0.25,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".hero",
+            start: "top top",
+            end: "70% top",
+            scrub: true,
+          },
+        });
+      }
     });
 
     const refresh = () => ScrollTrigger.refresh();
@@ -136,6 +147,14 @@ const App = () => {
 
   return (
     <Template>
+      <TargetCursor
+        spinDuration={2}
+        hideDefaultCursor
+        parallaxOn
+        hoverDuration={0.2}
+        cursorColor="#9a9a9a"
+        cursorColorOnTarget="#e1ff5f"
+      />
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />

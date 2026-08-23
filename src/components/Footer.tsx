@@ -1,21 +1,10 @@
-import { Heart } from "lucide-react";
-
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-inner">
-        <p className="footer-text">
-          © {new Date().getFullYear()} Kayysan. Built with{" "}
-          <Heart
-            size={13}
-            style={{
-              display: "inline",
-              verticalAlign: "middle",
-              color: "#ec4899",
-            }}
-          />{" "}
-          and React.
-        </p>
+        <span>© {new Date().getFullYear()} Kayysan</span>
+        <a href="#home">Back to top</a>
+        <span>Designed &amp; built with React</span>
       </div>
     </footer>
   );

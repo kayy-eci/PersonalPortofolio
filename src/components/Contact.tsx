@@ -1,130 +1,41 @@
-import { Mail, MapPin, Send } from "lucide-react";
-
 const socialLinks = [
-  {
-    name: "GitHub",
-    url: "https://github.com/kayy-eci",
-  },
-  {
-    name: "LinkedIn",
-    url: "https://www.linkedin.com/in/abdurahman-kayysan/",
-  },
-  {
-    name: "Instagram",
-    url: "https://www.instagram.com/kaii.dev/",
-  },
+  { name: "GitHub", url: "https://github.com/kayy-eci" },
+  { name: "LinkedIn", url: "https://www.linkedin.com/in/abdurahman-kayysan/" },
+  { name: "Instagram", url: "https://www.instagram.com/kaii.dev/" },
 ];
 
 const Contact = () => {
   return (
-    <section className="section" id="contact">
-      <div className="section-label">Get In Touch</div>
-      <h2 className="section-title">Let's work together</h2>
-      <p className="section-subtitle">
-        Have a project in mind? Let's build something amazing.
-      </p>
+    <section className="section contact" id="contact">
+      <span className="meta-label">Contact</span>
+      <h2 className="contact-title">
+        Let's build something
+        <br />
+        worth shipping.
+      </h2>
 
-      <div className="contact-wrapper">
-        <div className="contact-info">
-          <h3>Contact Info</h3>
-          <p>
-            Feel free to reach out through any of the channels below. I'm always
-            open to discussing new projects and creative ideas.
-          </p>
+      <a className="contact-mail" href="mailto:AbdurahmanKayysan@gmail.com">
+        AbdurahmanKayysan@gmail.com
+        <span className="arrow" aria-hidden="true">
+          ↗
+        </span>
+      </a>
 
-          <div className="contact-links">
-            {[
-              {
-                icon: <Mail size={20} />,
-                label: "Email",
-                value: "AbdurahmanKayysan@gmail.com",
-                href: "mailto:AbdurahmanKayysan@gmail.com",
-              },
-              {
-                icon: <MapPin size={20} />,
-                label: "Location",
-                value: "Indonesia Depok",
-                href: "#",
-              },
-            ].map((item) => (
-              <a key={item.label} href={item.href} className="contact-link">
-                <div className="contact-link-icon">{item.icon}</div>
-                <div className="contact-link-text">
-                  <div className="label">{item.label}</div>
-                  <div className="value">{item.value}</div>
-                </div>
-              </a>
-            ))}
-          </div>
-
-          <div style={{ display: "flex", gap: "0.75rem", marginTop: "2rem" }}>
-            {socialLinks.map((Social) => (
-              <a
-                key={Social.name}
-                href={Social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-pill"
-              >
-                {Social.name}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "1rem",
-            }}
+      <div className="contact-socials">
+        {socialLinks.map((social) => (
+          <a
+            key={social.name}
+            href={social.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-link cursor-target"
           >
-            <div className="form-group">
-              <label>Name</label>
-              <input
-                className="form-input"
-                type="text"
-                placeholder="John Doe"
-              />
-            </div>
-            <div className="form-group">
-              <label>Email</label>
-              <input
-                className="form-input"
-                type="email"
-                placeholder="john@example.com"
-              />
-            </div>
-          </div>
-          <div className="form-group">
-            <label>Subject</label>
-            <input
-              className="form-input"
-              type="text"
-              placeholder="Project Inquiry"
-            />
-          </div>
-          <div className="form-group">
-            <label>Message</label>
-            <textarea
-              className="form-textarea"
-              placeholder="Tell me about your project..."
-            />
-          </div>
-          <button type="submit" className="form-submit">
-            <span
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.5rem",
-              }}
-            >
-              <Send size={16} />
-              Send Message
+            {social.name}
+            <span className="arrow" aria-hidden="true">
+              ↗
             </span>
-          </button>
-        </form>
+          </a>
+        ))}
       </div>
     </section>
   );

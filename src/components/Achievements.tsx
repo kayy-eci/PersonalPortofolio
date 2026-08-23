@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Award, X } from "lucide-react";
 
 interface Achievement {
   title: string;
@@ -178,47 +177,50 @@ const Achievements = ({ showAll = false }: AchievementsProps) => {
 
   return (
     <section className="section" id="achievements">
-      <div className="section-label">Achievements</div>
-      <h2 className="section-title">Certificates & Certifications</h2>
-      <p className="section-subtitle">
-        Courses and certifications I've completed to sharpen my skills.
-      </p>
+      <div className="page-head">
+        <span className="meta-label">Recognition</span>
+        <h2>Certificates.</h2>
+        <p className="page-sub">
+          Courses and certifications I've completed to sharpen my skills.
+        </p>
+      </div>
 
       <div className="achievements-grid">
-        {visibleAchievements.map((a) => (
-          <div key={a.title} className="achievement-card">
+        {visibleAchievements.map((achievement) => (
+          <article
+            key={achievement.title}
+            className="achievement-card cursor-target"
+          >
             <div
               className="achievement-thumb"
-              onClick={() => setSelectedImage(a.image)}
+              onClick={() => setSelectedImage(achievement.image)}
             >
-              <img src={a.image} alt={a.title} loading="lazy" />
-              <div className="achievement-overlay">
-                <Award size={24} />
-                <span>View Certificate</span>
-              </div>
+              <img
+                src={achievement.image}
+                alt={achievement.title}
+                loading="lazy"
+              />
             </div>
-            <div className="achievement-body">
-              <div className="achievement-tags">
-                {a.tags.map((t) => (
-                  <span key={t} className="achievement-tag">
-                    {t}
-                  </span>
-                ))}
-              </div>
-              <h3 className="achievement-title">{a.title}</h3>
-              <p className="achievement-issuer">
-                {a.issuer} · {a.date}
-              </p>
-              <p className="achievement-desc">{a.description}</p>
+            <p className="achievement-meta">
+              {achievement.issuer} · {achievement.date}
+            </p>
+            <h3 className="achievement-title">{achievement.title}</h3>
+            <p className="achievement-desc">{achievement.description}</p>
+            <div className="achievement-tags">
+              {achievement.tags.map((tag) => (
+                <span key={tag} className="achievement-tag">
+                  {tag}
+                </span>
+              ))}
             </div>
-          </div>
+          </article>
         ))}
       </div>
 
       {hasMore && (
         <div className="achievement-actions">
-          <Link to="/achievements" className="btn-secondary">
-            See all certificates
+          <Link to="/achievements" className="btn-ghost">
+            View all certificates
           </Link>
         </div>
       )}
@@ -226,10 +228,12 @@ const Achievements = ({ showAll = false }: AchievementsProps) => {
       {selectedImage && (
         <div className="lightbox" onClick={() => setSelectedImage(null)}>
           <button
+            type="button"
             className="lightbox-close"
             onClick={() => setSelectedImage(null)}
+            aria-label="Close"
           >
-            <X size={24} />
+            ✕
           </button>
           <img
             src={selectedImage}

@@ -10,11 +10,9 @@ import {
   SiExpress,
   SiNextdotjs,
   SiNodedotjs,
-  SiNodemon,
   SiReact,
   SiReactquery,
   SiReactrouter,
-  SiReacthookform,
   SiVite,
   SiTailwindcss,
   SiPostgresql,
@@ -37,12 +35,10 @@ const skills = [
   { name: "Express.js", icon: SiExpress },
   { name: "Next.js", icon: SiNextdotjs },
   { name: "Node.js", icon: SiNodedotjs },
-  { name: "Nodemon", icon: SiNodemon },
   { name: "React", icon: SiReact },
 
   { name: "React Query", icon: SiReactquery },
   { name: "React Router", icon: SiReactrouter },
-  { name: "React Hook Form", icon: SiReacthookform },
   { name: "Vite", icon: SiVite },
   { name: "Tailwind CSS", icon: SiTailwindcss },
   { name: "PostgreSQL", icon: SiPostgresql },
@@ -58,28 +54,16 @@ const Skills = () => {
 
   return (
     <section className="skills-section" id="skills">
-      <div
-        style={{ textAlign: "center", marginBottom: "3rem", padding: "0 2rem" }}
-      >
-        <div className="section-label" style={{ justifyContent: "center" }}>
-          Tech Stack
-        </div>
-        <h2 className="section-title" style={{ textAlign: "center" }}>
-          Skills & Tools
-        </h2>
-        <p
-          className="section-subtitle"
-          style={{ margin: "0.5rem auto 0", textAlign: "center" }}
-        >
-          Technologies I work with daily to bring ideas to life.
-        </p>
+      <div className="skills-head">
+        <span className="meta-label">Stack</span>
+        <h2>Tools I work with.</h2>
       </div>
 
       <div className="skills-marquee">
-        {doubled.map((s, i) => (
+        {doubled.map((skill, i) => (
           <div key={i} className="skill-chip">
-            <s.icon size={24} style={{ flexShrink: 0 }} />
-            {s.name}
+            <skill.icon size={18} />
+            {skill.name}
           </div>
         ))}
       </div>

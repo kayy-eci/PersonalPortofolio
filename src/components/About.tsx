@@ -1,7 +1,17 @@
-import { Code, Palette, Zap } from "lucide-react";
 import TargetCursor from "./TargetCursor";
 import CountUp from "./CountUp";
-import TiltedCard from "./TiltedCard";
+
+const capabilities = [
+  { name: "Frontend Engineering", note: "React · TypeScript" },
+  { name: "Backend & APIs", note: "Node · Express · SQL" },
+  { name: "UI Motion & Interaction", note: "GSAP · Motion" },
+];
+
+const stats = [
+  { value: 3, label: "Years experience" },
+  { value: 22, label: "Projects built" },
+  { value: 20, label: "Happy clients" },
+];
 
 const About = () => {
   return (
@@ -11,153 +21,55 @@ const About = () => {
         hideDefaultCursor
         parallaxOn
         hoverDuration={0.2}
-        cursorColor="#94a3b8"
-        cursorColorOnTarget="#bcb2c5"
+        cursorColor="#9a9a9a"
+        cursorColorOnTarget="#e1ff5f"
       />
-      <div className="section-label">About Me</div>
       <div className="about-grid">
-        <TiltedCard
-          imageSrc="./public/kayysan.jpeg"
-          altText="Kayysan - Software Engineering"
-          captionText="Kayysan - Software Engineering"
-          containerHeight="500px"
-          containerWidth="550px"
-          imageHeight="350px"
-          imageWidth="350px"
-          rotateAmplitude={12}
-          scaleOnHover={1.05}
-          showMobileWarning={false}
-          showTooltip
-        />
+        <aside className="about-aside">
+          <span className="meta-label">About me</span>
+          <img
+            className="about-portrait"
+            src="/kayysan.jpeg"
+            alt="Portrait of Kayysan"
+          />
+        </aside>
 
-        <div>
-          <h2 className="section-title">Passionate about making website</h2>
-          <div className="about-text">
-            <p>
-              I'm a full-stack developer with a deep passion for building
-              beautiful, functional web applications. With experience in modern
-              JavaScript frameworks and a keen eye for design, I bring ideas to
-              life through clean code and intuitive interfaces.
-            </p>
-          </div>
+        <div className="about-body">
+          <p className="about-lead">
+            I'm a full-stack developer with a deep passion for building
+            beautiful, functional web applications.
+          </p>
+          <p>
+            With experience across modern JavaScript frameworks and a keen eye
+            for design, I bring ideas to life through clean code and intuitive
+            interfaces. I care about the details users feel but never notice:
+            load times, motion curves, keyboard paths.
+          </p>
 
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "1rem",
-              marginTop: "2rem",
-            }}
-          >
-            {[
-              {
-                icon: <Code size={20} />,
-                title: "Clean Code",
-                desc: "Writing maintainable, scalable code that stands the test of time.",
-              },
-              {
-                icon: <Palette size={20} />,
-                title: "Design-Driven",
-                desc: "Creating interfaces that are both beautiful and user-friendly.",
-              },
-              {
-                icon: <Zap size={20} />,
-                title: "Performance",
-                desc: "Optimizing every millisecond for the best user experience.",
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                style={{
-                  display: "flex",
-                  gap: "1rem",
-                  alignItems: "flex-start",
-                  padding: "1rem",
-                  borderRadius: "0.75rem",
-                  background: "var(--bg-card)",
-                  border: "1px solid var(--border-color)",
-                }}
-                className="cursor-target"
-              >
-                <div
-                  style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: "0.6rem",
-                    background: "rgba(124,58,237,0.08)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "var(--accent)",
-                    flexShrink: 0,
-                  }}
-                >
-                  {item.icon}
-                </div>
-                <div>
-                  <div
-                    style={{
-                      fontWeight: 600,
-                      color: "var(--text-heading)",
-                      marginBottom: 4,
-                    }}
-                  >
-                    {item.title}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: "0.85rem",
-                      color: "var(--text-secondary)",
-                    }}
-                  >
-                    {item.desc}
-                  </div>
-                </div>
-              </div>
+          <ul className="about-list">
+            {capabilities.map((item) => (
+              <li key={item.name} className="cursor-target">
+                <span className="name">{item.name}</span>
+                <span className="note">{item.note}</span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </div>
 
       <div className="about-stats">
-        {[
-          {
-            number: (
+        {stats.map((stat) => (
+          <div key={stat.label} className="stat cursor-target">
+            <div className="stat-number">
               <CountUp
-                to={3}
+                to={stat.value}
                 separator=","
                 duration={5}
                 className="count-up-text"
               />
-            ),
-            label: "Years Experience",
-          },
-          {
-            number: (
-              <CountUp
-                to={22}
-                separator=","
-                duration={5}
-                className="count-up-text"
-              />
-            ),
-            label: "Projects Built",
-          },
-          {
-            number: (
-              <CountUp
-                to={20}
-                separator=","
-                duration={5}
-                className="count-up-text"
-              />
-            ),
-            label: "Happy Clients",
-          },
-        ].map((s) => (
-          <div key={s.label} className="stat cursor-target">
-            <div className="stat-number">{s.number}</div>
-            <div className="stat-label">{s.label}</div>
+              <span>+</span>
+            </div>
+            <div className="stat-label">{stat.label}</div>
           </div>
         ))}
       </div>
