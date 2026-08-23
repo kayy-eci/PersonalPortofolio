@@ -72,7 +72,7 @@ const App = () => {
 
     const ctx = gsap.context(() => {
       gsap.utils
-        .toArray<HTMLElement>(".section, .skills-section, .footer")
+        .toArray<HTMLElement>(".section:not(.work), .skills-section, .footer")
         .forEach((section) => {
           gsap.fromTo(
             section,
@@ -87,8 +87,20 @@ const App = () => {
           );
         });
 
+      gsap.fromTo(
+        ".work-head",
+        { autoAlpha: 0, y: 32 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: { trigger: ".work-head", start: "top 85%", once: true },
+        },
+      );
+
       gsap.utils
-        .toArray<HTMLElement>(".work-list, .about-stats, .achievements-grid")
+        .toArray<HTMLElement>(".about-stats, .achievements-grid")
         .forEach((group) => {
           gsap.fromTo(
             group.children,
@@ -104,24 +116,6 @@ const App = () => {
           );
         });
 
-      gsap.utils.toArray<HTMLElement>(".work-media img").forEach((img) => {
-        gsap.fromTo(
-          img,
-          { scale: 1.14, yPercent: -4 },
-          {
-            scale: 1,
-            yPercent: 0,
-            ease: "none",
-            scrollTrigger: {
-              trigger: img.closest(".work-item"),
-              start: "top bottom",
-              end: "center center",
-              scrub: true,
-            },
-          },
-        );
-      });
-
       if (document.querySelector(".hero-inner")) {
         gsap.to(".hero-inner", {
           yPercent: -14,
@@ -135,6 +129,56 @@ const App = () => {
           },
         });
       }
+
+      const mm = gsap.matchMedia();
+
+      mm.add(
+        "(min-width: 900px) and (prefers-reduced-motion: no-preference)",
+        () => {
+          const cards = gsap.utils.toArray<HTMLElement>(".stack-card");
+          cards.forEach((card, i) => {
+            if (i === cards.length - 1) return;
+            ScrollTrigger.create({
+              trigger: card,
+              start: "top top",
+              endTrigger: cards[cards.length - 1],
+              end: "top top",
+              pin: true,
+              pinSpacing: false,
+            });
+            gsap.to(card, {
+              scale: 0.92,
+              opacity: 0.55,
+              ease: "none",
+              scrollTrigger: {
+                trigger: cards[i + 1],
+                start: "top bottom",
+                end: "top top",
+                scrub: true,
+              },
+            });
+          });
+        },
+      );
+
+      mm.add("(max-width: 899px)", () => {
+        gsap.fromTo(
+          ".stack-card",
+          { autoAlpha: 0, y: 56 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.85,
+            stagger: 0.12,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: ".stack-cards",
+              start: "top 82%",
+              once: true,
+            },
+          },
+        );
+      });
     });
 
     const refresh = () => ScrollTrigger.refresh();
