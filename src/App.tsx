@@ -88,16 +88,34 @@ const App = () => {
         });
 
       gsap.fromTo(
-        ".work-head",
+        ".featured-head",
         { autoAlpha: 0, y: 32 },
         {
           autoAlpha: 1,
           y: 0,
           duration: 0.8,
           ease: "power3.out",
-          scrollTrigger: { trigger: ".work-head", start: "top 85%", once: true },
+          scrollTrigger: {
+            trigger: ".featured-head",
+            start: "top 85%",
+            once: true,
+          },
         },
       );
+
+      gsap.utils.toArray<HTMLElement>(".featured-card").forEach((card) => {
+        gsap.fromTo(
+          card,
+          { autoAlpha: 0, y: 56 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: { trigger: card, start: "top 85%", once: true },
+          },
+        );
+      });
 
       gsap.utils
         .toArray<HTMLElement>(".about-stats, .achievements-grid")
@@ -129,56 +147,6 @@ const App = () => {
           },
         });
       }
-
-      const mm = gsap.matchMedia();
-
-      mm.add(
-        "(min-width: 900px) and (prefers-reduced-motion: no-preference)",
-        () => {
-          const cards = gsap.utils.toArray<HTMLElement>(".stack-card");
-          cards.forEach((card, i) => {
-            if (i === cards.length - 1) return;
-            ScrollTrigger.create({
-              trigger: card,
-              start: "top top",
-              endTrigger: cards[cards.length - 1],
-              end: "top top",
-              pin: true,
-              pinSpacing: false,
-            });
-            gsap.to(card, {
-              scale: 0.92,
-              opacity: 0.55,
-              ease: "none",
-              scrollTrigger: {
-                trigger: cards[i + 1],
-                start: "top bottom",
-                end: "top top",
-                scrub: true,
-              },
-            });
-          });
-        },
-      );
-
-      mm.add("(max-width: 899px)", () => {
-        gsap.fromTo(
-          ".stack-card",
-          { autoAlpha: 0, y: 56 },
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.85,
-            stagger: 0.12,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: ".stack-cards",
-              start: "top 82%",
-              once: true,
-            },
-          },
-        );
-      });
     });
 
     const refresh = () => ScrollTrigger.refresh();

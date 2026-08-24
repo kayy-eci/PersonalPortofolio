@@ -1,41 +1,52 @@
+import FeaturedWork from "./FeaturedWork";
+
 interface Project {
+  category: string;
   title: string;
   description: string;
+  metrics: { value: string; label: string }[];
   image: string;
-  tags: string[];
-  year?: string;
   liveUrl?: string;
   repoUrl?: string;
 }
 
 const projects: Project[] = [
   {
-    title: "NaturaDrops",
+    category: "E-COMMERCE, REACT, TAILWIND CSS, UI DESIGN",
+    title: "A Calm, Product-First Storefront for Natural Skincare",
     description:
-      "E-commerce concept for a natural skincare brand with a product-first catalog and a calm, editorial checkout flow.",
+      "An e-commerce concept that lets the product do the talking — a catalog built around imagery, quiet typography, and an editorial checkout flow designed to feel as clean as the formulas it sells.",
+    metrics: [
+      { value: "3 wks", label: "CONCEPT TO SHIP" },
+      { value: "100%", label: "RESPONSIVE COVERAGE" },
+    ],
     image: "/project/NaturaDrops.png",
-    tags: ["React", "Tailwind CSS", "E-commerce"],
-    year: "",
     liveUrl: "",
     repoUrl: "",
   },
   {
-    title: "ChessGame",
+    category: "TYPESCRIPT, GAME LOGIC, INTERACTIVE UI",
+    title: "A Chess Board That Plays by Every Rule, on Every Screen",
     description:
-      "Interactive chess application with full move validation, turn handling, and a board that stays playable on any screen size.",
+      "A fully playable chess application with complete move validation, check and checkmate detection, and turn handling — a board that stays sharp and responsive from desktop down to mobile.",
+    metrics: [
+      { value: "Full", label: "MOVE-SET COVERAGE" },
+      { value: "0", label: "EXTERNAL GAME LIBS" },
+    ],
     image: "/project/ChessGame.png",
-    tags: ["TypeScript", "Game Logic", "UI"],
-    year: "",
     liveUrl: "",
     repoUrl: "",
   },
   {
-    title: "Rebites",
+    category: "REACT, UX DESIGN, MOBILE-FIRST",
+    title: "Food Ordering Built for Speed, from Craving to Checkout",
     description:
-      "Food ordering experience focused on speed: browse, customize, and order in as few taps as possible.",
+      "A mobile-first ordering experience focused on momentum — browse the menu, customize the order, and check out in as few taps as possible without losing the appetite for detail.",
+    metrics: [
+      { value: "3 taps", label: "MINIMUM ORDER PATH" },
+      { value: "60fps", label: "INTERACTION TARGET" },
+    ],
     image: "/project/Rebites.png",
-    tags: ["React", "UX", "Mobile-first"],
-    year: "",
     liveUrl: "",
     repoUrl: "",
   },
@@ -44,78 +55,30 @@ const projects: Project[] = [
 const Work = () => {
   return (
     <section className="section work" id="work">
-      <div className="work-head">
-        <div>
-          <span className="meta-label">Selected work</span>
-          <h2>Things I've built.</h2>
-        </div>
+      <div className="featured-head">
+        <h2 className="featured-heading">
+          <span className="featured-heading-solid">FEATURED</span>{" "}
+          <span className="featured-heading-outline">WORK</span>
+        </h2>
         <span className="work-count">03 projects</span>
       </div>
 
-      <div className="stack-cards">
-        {projects.map((project, i) => (
-          <article className="stack-card cursor-target" key={project.title}>
-            <div className="stack-media">
-              <img
-                src={project.image}
-                alt={`${project.title} preview`}
-                loading={i === 0 ? undefined : "lazy"}
-              />
-            </div>
-
-            <div className="stack-info">
-              <div className="work-title-row">
-                <span className="work-index">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3>{project.title}</h3>
-                {project.year ? (
-                  <span className="stack-year">{project.year}</span>
-                ) : null}
-              </div>
-
-              <p className="work-desc">{project.description}</p>
-
-              <ul className="work-tags">
-                {project.tags.map((tag) => (
-                  <li key={tag} className="tag">
-                    {tag}
-                  </li>
-                ))}
-              </ul>
-
-              {(project.liveUrl || project.repoUrl) && (
-                <div className="card-links">
-                  {project.liveUrl && (
-                    <a
-                      className="card-link"
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Visit site{" "}
-                      <span className="arrow" aria-hidden="true">
-                        ↗
-                      </span>
-                    </a>
-                  )}
-                  {project.repoUrl && (
-                    <a
-                      className="card-link"
-                      href={project.repoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      GitHub{" "}
-                      <span className="arrow" aria-hidden="true">
-                        ↗
-                      </span>
-                    </a>
-                  )}
-                </div>
-              )}
-            </div>
-          </article>
+      <div className="featured-list">
+        {projects.map((project) => (
+          <FeaturedWork
+            key={project.title}
+            category={project.category}
+            title={project.title}
+            description={project.description}
+            metrics={project.metrics}
+            media={{
+              type: "image",
+              src: project.image,
+              alt: `${project.title} preview`,
+            }}
+            cta="VIEW CASE STUDY"
+            href={project.liveUrl || project.repoUrl || undefined}
+          />
         ))}
       </div>
     </section>
