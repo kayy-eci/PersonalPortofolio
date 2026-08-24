@@ -242,7 +242,7 @@
 .featured-list {
   display: flex;
   flex-direction: column;
-  gap: 6rem;
+  gap: 0;
 }
 .featured-card {
   display: grid;
@@ -358,6 +358,21 @@ a.featured-cta:hover .arrow {
   object-position: left center;
   display: block;
   will-change: transform;
+}
+
+/* Featured scroll stack (desktop) */
+@media (min-width: 901px) {
+  .featured-card {
+    min-height: 92svh;
+    align-items: stretch;
+  }
+  .featured-viewport {
+    aspect-ratio: auto;
+    height: 100%;
+  }
+  .featured-cta {
+    margin-top: auto;
+  }
 }
 
 /* Skills */

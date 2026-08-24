@@ -103,16 +103,52 @@ const App = () => {
         },
       );
 
-      gsap.utils.toArray<HTMLElement>(".featured-card").forEach((card) => {
+      const mm = gsap.matchMedia();
+
+      mm.add(
+        "(min-width: 901px) and (prefers-reduced-motion: no-preference)",
+        () => {
+          const cards = gsap.utils.toArray<HTMLElement>(".featured-card");
+          cards.forEach((card, i) => {
+            if (i === cards.length - 1) return;
+            ScrollTrigger.create({
+              trigger: card,
+              start: "top top",
+              endTrigger: cards[cards.length - 1],
+              end: "top top",
+              pin: true,
+              pinSpacing: false,
+            });
+            gsap.to(card, {
+              scale: 0.92,
+              opacity: 0.55,
+              ease: "none",
+              scrollTrigger: {
+                trigger: cards[i + 1],
+                start: "top bottom",
+                end: "top top",
+                scrub: true,
+              },
+            });
+          });
+        },
+      );
+
+      mm.add("(max-width: 900px)", () => {
         gsap.fromTo(
-          card,
+          ".featured-card",
           { autoAlpha: 0, y: 56 },
           {
             autoAlpha: 1,
             y: 0,
-            duration: 0.9,
+            duration: 0.85,
+            stagger: 0.12,
             ease: "power3.out",
-            scrollTrigger: { trigger: card, start: "top 85%", once: true },
+            scrollTrigger: {
+              trigger: ".featured-list",
+              start: "top 82%",
+              once: true,
+            },
           },
         );
       });

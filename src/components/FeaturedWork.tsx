@@ -54,7 +54,7 @@ const FeaturedWork = ({
           scrollTrigger: {
             trigger: card,
             start: "top bottom",
-            end: "bottom top",
+            end: "top top",
             scrub: true,
           },
         },
