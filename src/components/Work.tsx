@@ -54,13 +54,15 @@ const projects: Project[] = [
 
 const Work = () => {
   return (
-    <section className="section work" id="work">
-      <div className="featured-head">
-        <h2 className="featured-heading">
-          <span className="featured-heading-solid">FEATURED</span>{" "}
-          <span className="featured-heading-outline">WORK</span>
-        </h2>
-        <span className="work-count">03 projects</span>
+    <section className="work" id="work">
+      <div className="featured-head-wrap">
+        <div className="featured-head">
+          <h2 className="featured-heading">
+            <span className="featured-heading-solid">FEATURED</span>{" "}
+            <span className="featured-heading-outline">WORK</span>
+          </h2>
+          <span className="work-count">03 projects</span>
+        </div>
       </div>
 
       <div className="featured-list">

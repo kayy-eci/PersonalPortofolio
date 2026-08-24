@@ -362,9 +362,13 @@ a.featured-cta:hover .arrow {
 
 /* Featured scroll stack (desktop) */
 @media (min-width: 901px) {
+  .featured-list {
+    gap: 6rem;
+  }
   .featured-card {
-    min-height: 92svh;
+    min-height: 100svh;
     align-items: stretch;
+    padding-top: 5rem;
   }
   .featured-viewport {
     aspect-ratio: auto;
