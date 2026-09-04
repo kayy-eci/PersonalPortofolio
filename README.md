@@ -1,1 +1,6 @@
-# Personal Portofoli website with react + vite + tailwindCSS
+# Personal Portofoli website
+---
+made with :
+- tailwind
+- vite
+- reaact
