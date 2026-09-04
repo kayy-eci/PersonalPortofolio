@@ -1,4 +1,4 @@
-# Personal Portofoli website
+# Personal Portofolio website
 ---
 made with :
 - tailwind
