@@ -9,7 +9,7 @@ const capabilities = [
 
 const stats = [
   { value: 3, label: "Years experience" },
-  { value: 22, label: "Projects built" },
+  { value: 26, label: "Projects built" },
   { value: 20, label: "Happy clients" },
 ];
 
