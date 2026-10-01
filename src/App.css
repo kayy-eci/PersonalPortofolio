@@ -466,7 +466,7 @@
   min-height: 0;
   object-fit: cover;
   display: block;
-  filter: invert(1);
+  filter: invert(1) hue-rotate(180deg);
 }
 .cert-ring-caption {
   flex-shrink: 0;
