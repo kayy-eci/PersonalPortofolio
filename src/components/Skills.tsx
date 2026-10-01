@@ -51,6 +51,8 @@ const skills = [
 
 const Skills = () => {
   const doubled = [...skills, ...skills];
+  // Arah tiap baris: tengah jalan kebalikan
+  const rows = [false, true, false];
 
   return (
     <section className="skills-section" id="skills">
@@ -59,14 +61,19 @@ const Skills = () => {
         <h2>Tools I work with.</h2>
       </div>
 
-      <div className="skills-marquee">
-        {doubled.map((skill, i) => (
-          <div key={i} className="skill-chip">
-            <skill.icon size={18} />
-            {skill.name}
-          </div>
-        ))}
-      </div>
+      {rows.map((reverse, rowIdx) => (
+        <div
+          key={rowIdx}
+          className={`skills-marquee${reverse ? " is-reverse" : ""}`}
+        >
+          {doubled.map((skill, i) => (
+            <div key={i} className="skill-chip">
+              <skill.icon size={18} />
+              {skill.name}
+            </div>
+          ))}
+        </div>
+      ))}
     </section>
   );
 };

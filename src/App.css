@@ -507,6 +507,12 @@
   width: max-content;
   animation: marquee 32s linear infinite;
 }
+.skills-marquee + .skills-marquee {
+  margin-top: 1.25rem;
+}
+.skills-marquee.is-reverse {
+  animation-direction: reverse;
+}
 .skills-marquee:hover {
   animation-play-state: paused;
 }
