@@ -1,137 +1,75 @@
-import { useLayoutEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-
-export interface FeaturedWorkMetric {
-  value: string;
-  label: string;
-}
-
-export interface FeaturedWorkMedia {
-  type: "image" | "video";
-  src: string;
-  poster?: string;
-  alt?: string;
-}
-
-interface FeaturedWorkProps {
+interface WorkRowProps {
+  index: string;
+  name: string;
   category: string;
-  title: string;
+  image: string;
   description: string;
-  metrics: FeaturedWorkMetric[];
-  media: FeaturedWorkMedia;
-  cta: string;
   href?: string;
+  dimmed?: boolean;
+  onEnter?: () => void;
+  onLeave?: () => void;
 }
 
-const FeaturedWork = ({
+const WorkRow = ({
+  index,
+  name,
   category,
-  title,
+  image,
   description,
-  metrics,
-  media,
-  cta,
   href,
-}: FeaturedWorkProps) => {
-  const cardRef = useRef<HTMLElement>(null);
+  dimmed,
+  onEnter,
+  onLeave,
+}: WorkRowProps) => {
+  const className = `work-row cursor-target${dimmed ? " is-dimmed" : ""}`;
 
-  useLayoutEffect(() => {
-    const card = cardRef.current;
-    if (!card) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const inner = (
+    <>
+      <span className="work-index">{index}</span>
+      <h3 className="work-name">
+        {name}
+        <span className="work-arrow" aria-hidden="true">
+          →
+        </span>
+      </h3>
+      <span className="work-category">{category}</span>
+      {/* Thumbnail inline — cuma muncul di mobile (no-hover) */}
+      <span className="work-thumb">
+        <img src={image} alt={`${name} preview`} loading="lazy" />
+      </span>
+      <span className="sr-only">{description}</span>
+    </>
+  );
 
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ".featured-media",
-        { xPercent: 0, yPercent: 0, scale: 1 },
-        {
-          xPercent: -6,
-          yPercent: 1.5,
-          scale: 1.04,
-          ease: "none",
-          scrollTrigger: {
-            trigger: card,
-            start: "top bottom",
-            end: "top top",
-            scrub: true,
-          },
-        },
-      );
-    }, card);
-
-    return () => ctx.revert();
-  }, []);
-
-  const renderMedia = () => {
-    if (media.type === "video") {
-      return (
-        <video
-          className="featured-media"
-          src={media.src}
-          poster={media.poster}
-          autoPlay
-          muted
-          loop
-          playsInline
-        />
-      );
-    }
+  if (href) {
     return (
-      <img
-        className="featured-media"
-        src={media.src}
-        alt={media.alt ?? ""}
-        loading="lazy"
-      />
+      <a
+        className={className}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        onMouseEnter={onEnter}
+        onMouseLeave={onLeave}
+        onFocus={onEnter}
+        onBlur={onLeave}
+      >
+        {inner}
+      </a>
     );
-  };
+  }
 
   return (
-    <article className="featured-card cursor-target" ref={cardRef}>
-      <div className="featured-info">
-        <span className="featured-category">{category}</span>
-        <h3 className="featured-title">{title}</h3>
-        <p className="featured-desc">{description}</p>
-
-        <div className="featured-metrics">
-          {metrics.map((metric) => (
-            <div className="featured-metric" key={metric.label}>
-              <span className="featured-metric-value">{metric.value}</span>
-              <span className="featured-metric-label">{metric.label}</span>
-            </div>
-          ))}
-        </div>
-
-        {href ? (
-          <a
-            className="featured-cta"
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {cta}
-            <span className="arrow" aria-hidden="true">
-              →
-            </span>
-          </a>
-        ) : (
-          <span className="featured-cta">
-            {cta}
-            <span className="arrow" aria-hidden="true">
-              →
-            </span>
-          </span>
-        )}
-      </div>
-
-      <div className="featured-showcase">
-        <span className="featured-frame" aria-hidden="true" />
-        <div className="featured-viewport">{renderMedia()}</div>
-      </div>
+    <article
+      className={className}
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+      onFocus={onEnter}
+      onBlur={onLeave}
+      tabIndex={0}
+    >
+      {inner}
     </article>
   );
 };
 
-export default FeaturedWork;
+export default WorkRow;

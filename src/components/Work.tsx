@@ -1,10 +1,11 @@
-import FeaturedWork from "./FeaturedWork";
+import { useLayoutEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import WorkRow from "./FeaturedWork";
 
 interface Project {
+  name: string;
   category: string;
-  title: string;
   description: string;
-  metrics: { value: string; label: string }[];
   image: string;
   liveUrl?: string;
   repoUrl?: string;
@@ -12,40 +13,28 @@ interface Project {
 
 const projects: Project[] = [
   {
-    category: "E-COMMERCE, REACT, TAILWIND CSS, UI DESIGN",
-    title: "A Calm, Product-First Storefront for Natural Skincare",
+    name: "NATURA",
+    category: "E-COMMERCE",
     description:
-      "An e-commerce concept that lets the product do the talking — a catalog built around imagery, quiet typography, and an editorial checkout flow designed to feel as clean as the formulas it sells.",
-    metrics: [
-      { value: "3 wks", label: "CONCEPT TO SHIP" },
-      { value: "100%", label: "RESPONSIVE COVERAGE" },
-    ],
+      "A calm, product-first storefront for natural skincare — catalog built around imagery, quiet typography, and an editorial checkout flow.",
     image: "/project/NaturaDrops.png",
     liveUrl: "",
     repoUrl: "",
   },
   {
-    category: "TYPESCRIPT, GAME LOGIC, INTERACTIVE UI",
-    title: "A Chess Board That Plays by Every Rule, on Every Screen",
+    name: "CHESS",
+    category: "GAME LOGIC",
     description:
-      "A fully playable chess application with complete move validation, check and checkmate detection, and turn handling — a board that stays sharp and responsive from desktop down to mobile.",
-    metrics: [
-      { value: "Full", label: "MOVE-SET COVERAGE" },
-      { value: "0", label: "EXTERNAL GAME LIBS" },
-    ],
+      "A fully playable chess app with complete move validation, check and checkmate detection, responsive from desktop to mobile.",
     image: "/project/ChessGame.png",
     liveUrl: "",
     repoUrl: "",
   },
   {
-    category: "REACT, UX DESIGN, MOBILE-FIRST",
-    title: "Food Ordering Built for Speed, from Craving to Checkout",
+    name: "REBITES",
+    category: "FOOD ORDERING",
     description:
-      "A mobile-first ordering experience focused on momentum — browse the menu, customize the order, and check out in as few taps as possible without losing the appetite for detail.",
-    metrics: [
-      { value: "3 taps", label: "MINIMUM ORDER PATH" },
-      { value: "60fps", label: "INTERACTION TARGET" },
-    ],
+      "A mobile-first food ordering experience — browse, customize, and check out in as few taps as possible.",
     image: "/project/Rebites.png",
     liveUrl: "",
     repoUrl: "",
@@ -53,33 +42,125 @@ const projects: Project[] = [
 ];
 
 const Work = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const previewRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  useLayoutEffect(() => {
+    const section = sectionRef.current;
+    const preview = previewRef.current;
+    if (!section || !preview) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.matchMedia("(hover: none)").matches) return;
+
+    gsap.set(preview, { autoAlpha: 0, scale: 0.85, rotate: 0 });
+
+    const xTo = gsap.quickTo(preview, "x", {
+      duration: 0.55,
+      ease: "power3",
+    });
+    const yTo = gsap.quickTo(preview, "y", {
+      duration: 0.55,
+      ease: "power3",
+    });
+    const rTo = gsap.quickTo(preview, "rotation", {
+      duration: 0.6,
+      ease: "power3",
+    });
+    let lastX = 0;
+
+    const handleMove = (e: MouseEvent) => {
+      // Offset biar preview nggak nutupin cursor: sedikit ke kanan-atas
+      xTo(e.clientX + 28);
+      yTo(e.clientY - 140);
+      const vx = e.clientX - lastX;
+      lastX = e.clientX;
+      rTo(gsap.utils.clamp(-10, 10, vx * 0.35));
+    };
+
+    const handleLeaveSection = () => setActiveIndex(null);
+
+    section.addEventListener("mousemove", handleMove);
+    section.addEventListener("mouseleave", handleLeaveSection);
+    return () => {
+      section.removeEventListener("mousemove", handleMove);
+      section.removeEventListener("mouseleave", handleLeaveSection);
+    };
+  }, []);
+
+  useLayoutEffect(() => {
+    const preview = previewRef.current;
+    if (!preview) return;
+    if (window.matchMedia("(hover: none)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      gsap.set(preview, { autoAlpha: activeIndex !== null ? 1 : 0 });
+      return;
+    }
+    gsap.to(preview, {
+      autoAlpha: activeIndex !== null ? 1 : 0,
+      scale: activeIndex !== null ? 1 : 0.85,
+      duration: 0.35,
+      ease: "power3.out",
+      overwrite: "auto",
+    });
+  }, [activeIndex]);
+
   return (
-    <section className="work" id="work">
+    <section className="work" id="work" ref={sectionRef}>
       <div className="featured-head-wrap">
         <div className="featured-head">
           <h2 className="featured-heading">
-            <span className="featured-heading-solid">FEATURED</span>{" "}
+            <span className="featured-heading-solid">SELECTED</span>{" "}
             <span className="featured-heading-outline">WORK</span>
           </h2>
-          <span className="work-count">03 projects</span>
+          <span className="work-count">
+            {String(projects.length).padStart(2, "0")} projects
+          </span>
         </div>
       </div>
 
-      <div className="featured-list">
-        {projects.map((project) => (
-          <FeaturedWork
-            key={project.title}
-            category={project.category}
-            title={project.title}
-            description={project.description}
-            metrics={project.metrics}
-            media={{
-              type: "image",
-              src: project.image,
-              alt: `${project.title} preview`,
-            }}
-            cta="VIEW CASE STUDY"
-            href={project.liveUrl || project.repoUrl || undefined}
+      <div className="work-list-wrap">
+        <div className="work-list-head" aria-hidden="true">
+          <span>INDEX</span>
+          <span>PROJECT</span>
+          <span className="work-list-head-cat">CATEGORY</span>
+        </div>
+
+        <div className="work-list">
+          {projects.map((project, i) => (
+            <WorkRow
+              key={project.name}
+              index={String(i + 1).padStart(2, "0")}
+              name={project.name}
+              category={project.category}
+              image={project.image}
+              description={project.description}
+              href={project.liveUrl || project.repoUrl || undefined}
+              dimmed={activeIndex !== null && activeIndex !== i}
+              onEnter={() => setActiveIndex(i)}
+              onLeave={() => setActiveIndex(null)}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Floating preview — desktop only, ngikutin cursor */}
+      <div
+        className="work-floating-preview"
+        ref={previewRef}
+        aria-hidden="true"
+      >
+        {projects.map((project, i) => (
+          <img
+            key={project.name}
+            src={project.image}
+            alt=""
+            loading={i === 0 ? "eager" : "lazy"}
+            className={
+              activeIndex === i
+                ? "work-floating-img is-active"
+                : "work-floating-img"
+            }
           />
         ))}
       </div>
