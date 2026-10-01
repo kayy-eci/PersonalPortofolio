@@ -43,10 +43,10 @@ const Hero = () => {
           </span>
           <span className="hero-mask">
             <span className="hero-line">
-              I build{" "}
+              I'm a{" "}
               <em>
                 <RotatingText
-                  texts={["Frontend", "Backend", "Fullstack", "Mobile"]}
+                  texts={["Frontend Dev", "Backend Dev", "Fullstack Dev", "Mobile Dev"]}
                   className="inline-flex"
                   mainClassName="overflow-hidden align-bottom"
                   staggerFrom="last"
@@ -55,19 +55,18 @@ const Hero = () => {
                   exit={{ y: "-120%" }}
                   staggerDuration={0.02}
                   transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                  rotationInterval={2400}
+                  rotationInterval={3000}
                   splitBy="characters"
                   auto
                   loop
                 />
               </em>{" "}
-              products.
             </span>
           </span>
         </h1>
 
         <p className="hero-sub">
-          Full-stack developer crafting fast, expressive web experiences with
+          Software developer crafting fast, expressive web experiences with
           modern tooling. Turning ideas into products that feel as good as they
           work.
         </p>

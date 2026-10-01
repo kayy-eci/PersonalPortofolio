@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Work from "./components/Work";
+import CertificateRing from "./components/CertificateRing";
 import About from "./components/About";
 import Achievements from "./components/Achievements";
 import Skills from "./components/Skills";
@@ -21,6 +22,7 @@ const HomePage = () => (
     <Hero />
     <div className="section-divider" />
     <Work />
+    <CertificateRing />
     <Skills />
     <div className="section-divider" />
     <Contact />
@@ -115,6 +117,22 @@ const App = () => {
           scrollTrigger: {
             trigger: ".work-list",
             start: "top 82%",
+            once: true,
+          },
+        },
+      );
+
+      gsap.fromTo(
+        ".cert-ring-section",
+        { autoAlpha: 0, y: 64 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".cert-ring-section",
+            start: "top 85%",
             once: true,
           },
         },

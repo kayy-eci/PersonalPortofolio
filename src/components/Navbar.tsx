@@ -1,3 +1,4 @@
+import StaggeredMenu from './StaggeredMenu';
 import { Link, NavLink } from "react-router-dom";
 
 const links = [
@@ -6,6 +7,39 @@ const links = [
   { label: "Awards", to: "/achievements" },
   { label: "Contact", to: "/contact" },
 ];
+
+
+const menuItems = [
+  { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
+  { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
+  { label: 'Services', ariaLabel: 'View our services', link: '/services' },
+  { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
+];
+
+const socialItems = [
+  { label: 'Twitter', link: 'https://twitter.com' },
+  { label: 'GitHub', link: 'https://github.com' },
+  { label: 'LinkedIn', link: 'https://linkedin.com' }
+];
+
+<div style={{ height: '100vh', background: '#1a1a1a' }}>
+  <StaggeredMenu
+    position="right"
+    items={menuItems}
+    socialItems={socialItems}
+    displaySocials
+    displayItemNumbering={true}
+    menuButtonColor="#94a3b8"
+    openMenuButtonColor="#fff"
+    changeMenuColorOnOpen={true}
+    colors={['#B497CF', '#5227FF']}
+    logoUrl="/path-to-your-logo.svg"
+    accentColor="#84CC16"
+    onMenuOpen={() => console.log('Menu opened')}
+    onMenuClose={() => console.log('Menu closed')}
+  />
+</div>
+
 
 const Navbar = () => {
   return (

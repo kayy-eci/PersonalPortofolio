@@ -385,6 +385,112 @@
   transform: scale(1);
 }
 
+/* Certificate ring — 3D parallax carousel */
+.cert-ring-section {
+  padding: 4rem 0 8rem;
+  scroll-margin-top: 90px;
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.cert-ring-section.is-grabbing {
+  cursor: grabbing;
+}
+.cert-ring-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+.cert-ring-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.cert-ring-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  margin: 0;
+}
+.cert-ring-hint {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.cert-ring-stage {
+  height: clamp(300px, 36vw, 430px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 20px;
+  background:
+    radial-gradient(60% 70% at 50% 32%, rgba(225, 255, 95, 0.05), transparent 70%),
+    var(--bg-elev);
+  border: 1px solid var(--border-color);
+}
+.cert-ring {
+  position: relative;
+  width: 360px;
+  height: 250px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.cert-ring-item {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #191919;
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+.cert-ring-item img {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  object-fit: cover;
+  display: block;
+  filter: invert(1);
+}
+.cert-ring-caption {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  padding: 0.65rem 0.75rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-top: 1px solid var(--border-color);
+}
+.cert-ring-cta {
+  display: flex;
+  justify-content: center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cert-ring-section {
+    cursor: default;
+  }
+}
+
 /* Skills */
 .skills-head {
   max-width: 1400px;
@@ -857,5 +963,27 @@
   }
   .work-floating-preview {
     display: none;
+  }
+  .cert-ring-section {
+    padding: 3rem 0 6rem;
+  }
+  .cert-ring-inner {
+    padding: 0 1.5rem;
+  }
+  .cert-ring-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .cert-ring-stage {
+    height: clamp(260px, 64vw, 360px);
+  }
+  .cert-ring {
+    width: 250px;
+    height: 175px;
+  }
+  .cert-ring-caption {
+    font-size: 0.54rem;
+    padding: 0.5rem 0.6rem;
   }
 }
